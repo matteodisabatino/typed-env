@@ -1,0 +1,30 @@
+import { Runtype, Static } from 'runtypes';
+import { CheckOptions } from './data_types';
+export declare const is: (value: unknown, type_: string, options_?: Static<typeof CheckOptions>) => any;
+export declare const isArray: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isBigInt: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isBigInt64Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isBigUint64Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isBoolean: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isDate: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isFloat32Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isFloat64Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isFunction: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isInt8Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isInt16Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isInt32Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isMap: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isNumber: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isObject: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isRegExp: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isSet: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isString: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isSymbol: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isUint8Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isUint8ClampedArray: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isUint16Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const isUint32Array: (options_?: Static<typeof CheckOptions>) => Runtype;
+export declare const fromLiteral: {
+    [type: string]: (options: Static<typeof CheckOptions>) => Runtype;
+};
+//# sourceMappingURL=check.d.ts.map
