@@ -221,7 +221,7 @@ export const toString = (value_: string): string => {
   return value
 }
 
-export const toSymbol = (value_: string): Symbol => {
+export const toSymbol = (value_: string): symbol => {
   const value = isString().check(value_) as string
   // if value_ passes the check it is per sure a string, so the only thing to
   // do is to create a Symbol and returning it since is always possibile to
@@ -285,7 +285,7 @@ export const toUint32Array = (value_: string): Uint32Array => {
   }
 }
 
-export const fromLiteral: { [type: string]: (value: string) => any } = {
+export const fromLiteral: Record<string, (value: string) => any> = {
   array: toArray,
   bigint: toBigInt,
   bigint64array: toBigInt64Array,

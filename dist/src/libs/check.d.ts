@@ -1,4 +1,4 @@
-import { Runtype, Static } from 'runtypes';
+import { type Runtype, type Static } from 'runtypes';
 import { CheckOptions } from './data_types';
 export declare const is: (value: unknown, type_: string, options_?: Static<typeof CheckOptions>) => any;
 export declare const isArray: (options_?: Static<typeof CheckOptions>) => Runtype;
@@ -24,7 +24,5 @@ export declare const isUint8Array: (options_?: Static<typeof CheckOptions>) => R
 export declare const isUint8ClampedArray: (options_?: Static<typeof CheckOptions>) => Runtype;
 export declare const isUint16Array: (options_?: Static<typeof CheckOptions>) => Runtype;
 export declare const isUint32Array: (options_?: Static<typeof CheckOptions>) => Runtype;
-export declare const fromLiteral: {
-    [type: string]: (options: Static<typeof CheckOptions>) => Runtype;
-};
+export declare const fromLiteral: Record<string, (options: Static<typeof CheckOptions>) => Runtype>;
 //# sourceMappingURL=check.d.ts.map

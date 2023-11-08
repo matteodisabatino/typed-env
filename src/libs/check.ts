@@ -9,8 +9,8 @@ import {
   Null,
   Nullish,
   Number,
-  Runtype,
-  Static,
+  type Runtype,
+  type Static,
   String,
   Symbol,
   Undefined,
@@ -334,7 +334,7 @@ export const isUint32Array = (options_: Static<typeof CheckOptions> = {}): Runty
   return fn
 }
 
-export const fromLiteral: { [type: string]: (options: Static<typeof CheckOptions>) => Runtype } = {
+export const fromLiteral: Record<string, (options: Static<typeof CheckOptions>) => Runtype> = {
   array: isArray,
   bigint: isBigInt,
   bigint64array: isBigInt64Array,

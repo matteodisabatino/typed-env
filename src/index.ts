@@ -17,7 +17,7 @@ class TypedEnvPrivates {
 class TypedEnv {
   constructor (source_?: object) {
     const source = checkIs(source_, 'object', { allowUndefined: true })
-    const env = new Env(source as any)
+    const env = new Env(source)
     privates.set(this, new TypedEnvPrivates(env))
   }
 
