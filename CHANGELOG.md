@@ -1,5 +1,17 @@
 
 
+# 2.0.0 (2023-11-08)
+
+
+### Code Refactoring
+
+* deprecating old node versions ([358679a](https://github.com/matteodisabatino/typed-env/commit/358679af5b8db965d60f139f0e52500656bbc5d9))
+
+
+### BREAKING CHANGES
+
+* node versions prior to 18 are now unsupported
+
 ## 1.0.2 (2023-11-08)
 
 ## 1.0.1 (2023-11-08)
