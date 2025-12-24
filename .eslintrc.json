@@ -4,7 +4,6 @@
     "node": true
   },
   "extends": [
-    "plugin:ava/recommended",
     "standard-with-typescript"
   ],
   "parserOptions": {
