@@ -10,8 +10,6 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint src test --fix --ext ts",
-    "postbuild": "copyfiles -e \"**/*.ts\" \"src/**/*\" \"test/**/*\" dist/",
-    "postinstall": "rimraf dist/package.json && copyfiles package.json dist/",
     "prebuild": "rimraf dist",
     "release": "release-it --ci",
     "test": "TO_ARRAY=[10,20] TO_BIG_INT=42 TO_BIG_INT_64_ARRAY=[22,33] TO_BIG_UINT_64_ARRAY=[88,99] TO_BOOLEAN=false TO_DATE_FROM_NUMBER=1640991600000 TO_DATE_FROM_STRING=1999-12-31T23:00:00.000Z TO_FLOAT_32_ARRAY=[12.5,77] TO_FLOAT_32_ARRAY_WRONG=[10,\\\"foo\\\"] TO_FLOAT_64_ARRAY=[22.3,47.22] TO_FLOAT_64_ARRAY_WRONG=[20,\\\"bar\\\"] TO_FUNCTION=\"(x) => x ** 2\" TO_INT_8_ARRAY=[8,32] TO_INT_8_ARRAY_WRONG=[30,\\\"baz\\\"] TO_INT_16_ARRAY=[64,128] TO_INT_16_ARRAY_WRONG=[40,\\\"foo\\\"] TO_INT_32_ARRAY=[1024,3912] TO_INT_32_ARRAY_WRONG=[50,\\\"bar\\\"] TO_MAP={\\\"hello\\\":\\\"world\\\"} TO_NUMBER=5 TO_OBJECT={\\\"key\\\":\\\"value\\\"} TO_REG_EXP=^hello$ TO_REG_EXP_WRONG=?: TO_SET=[30,50] TO_STRING=test TO_SYMBOL=foo TO_UINT_8_ARRAY=[10,20] TO_UINT_8_ARRAY_WRONG=[10,\\\"foo\\\"] TO_UINT_8_CLAMPED_ARRAY=[50,55] TO_UINT_8_CLAMPED_ARRAY_WRONG=[50,\\\"bar\\\"] TO_UINT_16_ARRAY=[250,450] TO_UINT_16_ARRAY_WRONG=[250,\\\"baz\\\"] TO_UINT_32_ARRAY=[1200,3400] TO_UINT_32_ARRAY_WRONG=[\\\"foo\\\",3400] tsx --test --experimental-test-coverage \"test/**/*.spec.ts\""
@@ -48,14 +46,13 @@
   "homepage": "https://github.com/matteodisabatino/typed-env#readme",
   "dependencies": {
     "@humanwhocodes/env": "^3.0.1",
-    "copyfiles": "^2.4.1",
-    "rimraf": "^5.0.5",
     "runtypes": "^6.7.0"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
     "eslint": "^9.39.2",
     "neostandard": "^0.12.2",
+    "rimraf": "^5.0.5",
     "tsx": "^4.21.0",
     "typescript": "^5.2.2"
   },
