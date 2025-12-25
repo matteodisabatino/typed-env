@@ -1,3 +1,7 @@
+# [3.0.0](https://github.com/matteodisabatino/typed-env/compare/2.0.0...3.0.0) (2025-12-25)
+
+
+
 
 
 # 2.0.0 (2023-11-08)
