@@ -1,6 +1,6 @@
 {
     "name": "@matteodisabatino/typed-env",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "Enable the conversion of environment variables into several JavaScript types",
     "main": "dist/src/index.js",
     "typings": "dist/src/index.d.ts",

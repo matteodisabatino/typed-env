@@ -46,9 +46,14 @@ conventional-changelog \
   -s
 
 # ==============================
+# OVERWRITE package.json in dist
+# ==============================
+cp package.json dist
+
+# ==============================
 # GIT COMMIT
 # ==============================
-git add package.json "${CHANGELOG_FILE}"
+git add package.json dist "${CHANGELOG_FILE}"
 git commit -m "chore(release): ${NEW_VERSION}"
 
 # ==============================
