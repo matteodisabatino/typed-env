@@ -17,7 +17,7 @@ import {
 
 import { CheckOptions } from './data_types'
 
-export const is = (value: unknown, type_: string, options_: Static<typeof CheckOptions> = {}): any => {
+export const is = (value: unknown, type_: string, options_: Static<typeof CheckOptions> = {}) => {
   const type = isString().check(type_) as string
   const options = CheckOptions.check(options_)
   const lType = String.withGuard((k: string): k is keyof typeof fromLiteral => k in fromLiteral).check(type.toLowerCase())

@@ -1,4 +1,8 @@
 import {
+  String,
+} from 'runtypes'
+
+import {
   isArray,
   isDate,
   isFunction,
@@ -7,19 +11,15 @@ import {
   isString
 } from './check'
 
-export const to = (value_: string, type_: string): any => {
-  const value = isString().check(value_) as string
-  const type = isString().check(type_) as string
-  const lType = type.toLowerCase()
-  if (!(lType in fromLiteral)) {
-    throw new SyntaxError(`Unknown type "${type_}"`)
-  }
-
-  return fromLiteral[type]!(value)
+export const to = (value_: string, type_: string) => {
+  const value = isString().check(value_)
+  const type = isString().check(type_)
+  const lType = String.withGuard((k: string): k is keyof typeof fromLiteral => k in fromLiteral).check(type.toLowerCase())
+  return fromLiteral[lType](value)
 }
 
-export const toArray = (value_: string): any[] => {
-  const value = isString().check(value_) as string
+export const toArray = (value_: string) => {
+  const value = isString().check(value_)
   try {
     const arr = JSON.parse(value)
     return isArray().check(arr) as any[]
@@ -28,7 +28,7 @@ export const toArray = (value_: string): any[] => {
   }
 }
 
-export const toBigInt = (value_: string): bigint => {
+export const toBigInt = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     return BigInt(value)
@@ -37,7 +37,7 @@ export const toBigInt = (value_: string): bigint => {
   }
 }
 
-export const toBigInt64Array = (value_: string): BigInt64Array => {
+export const toBigInt64Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(BigInt)
@@ -47,7 +47,7 @@ export const toBigInt64Array = (value_: string): BigInt64Array => {
   }
 }
 
-export const toBigUint64Array = (value_: string): BigUint64Array => {
+export const toBigUint64Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(BigInt)
@@ -57,7 +57,7 @@ export const toBigUint64Array = (value_: string): BigUint64Array => {
   }
 }
 
-export const toBoolean = (value_: string): boolean => {
+export const toBoolean = (value_: string) => {
   const value = isString().check(value_) as string
   if (!/^(?:true|false)$/.test(value)) {
     throw new SyntaxError(`Unable to convert "${value_}" to Boolean`)
@@ -66,7 +66,7 @@ export const toBoolean = (value_: string): boolean => {
   return value === 'true'
 }
 
-export const toDate = (value_: string): Date => {
+export const toDate = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     let val: number | string
@@ -83,7 +83,7 @@ export const toDate = (value_: string): Date => {
   }
 }
 
-export const toFloat32Array = (value_: string): Float32Array => {
+export const toFloat32Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -97,7 +97,7 @@ export const toFloat32Array = (value_: string): Float32Array => {
   }
 }
 
-export const toFloat64Array = (value_: string): Float64Array => {
+export const toFloat64Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -111,7 +111,7 @@ export const toFloat64Array = (value_: string): Float64Array => {
   }
 }
 
-export const toFunction = (value_: string): Function => {
+export const toFunction = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     // eslint-disable-next-line
@@ -122,7 +122,7 @@ export const toFunction = (value_: string): Function => {
   }
 }
 
-export const toInt8Array = (value_: string): Int8Array => {
+export const toInt8Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -136,7 +136,7 @@ export const toInt8Array = (value_: string): Int8Array => {
   }
 }
 
-export const toInt16Array = (value_: string): Int16Array => {
+export const toInt16Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -150,7 +150,7 @@ export const toInt16Array = (value_: string): Int16Array => {
   }
 }
 
-export const toInt32Array = (value_: string): Int32Array => {
+export const toInt32Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -164,7 +164,7 @@ export const toInt32Array = (value_: string): Int32Array => {
   }
 }
 
-export const toMap = (value_: string): Map<string, unknown> => {
+export const toMap = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const obj_ = JSON.parse(value)
@@ -175,7 +175,7 @@ export const toMap = (value_: string): Map<string, unknown> => {
   }
 }
 
-export const toNumber = (value_: string): number => {
+export const toNumber = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const num = Number(value)
@@ -185,7 +185,7 @@ export const toNumber = (value_: string): number => {
   }
 }
 
-export const toObject = (value_: string): object => {
+export const toObject = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const obj = JSON.parse(value)
@@ -195,7 +195,7 @@ export const toObject = (value_: string): object => {
   }
 }
 
-export const toRegExp = (value_: string): RegExp => {
+export const toRegExp = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     return new RegExp(value)
@@ -204,7 +204,7 @@ export const toRegExp = (value_: string): RegExp => {
   }
 }
 
-export const toSet = (value_: string): Set<unknown> => {
+export const toSet = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const obj = toArray(value)
@@ -214,14 +214,14 @@ export const toSet = (value_: string): Set<unknown> => {
   }
 }
 
-export const toString = (value_: string): string => {
+export const toString = (value_: string) => {
   const value = isString().check(value_) as string
   // if value_ passes the check it is per sure a string, so the only thing to
   // do is to returning it
   return value
 }
 
-export const toSymbol = (value_: string): symbol => {
+export const toSymbol = (value_: string) => {
   const value = isString().check(value_) as string
   // if value_ passes the check it is per sure a string, so the only thing to
   // do is to create a Symbol and returning it since is always possibile to
@@ -229,7 +229,7 @@ export const toSymbol = (value_: string): symbol => {
   return Symbol(value)
 }
 
-export const toUint8Array = (value_: string): Uint8Array => {
+export const toUint8Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -243,7 +243,7 @@ export const toUint8Array = (value_: string): Uint8Array => {
   }
 }
 
-export const toUint8ClampedArray = (value_: string): Uint8ClampedArray => {
+export const toUint8ClampedArray = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -257,7 +257,7 @@ export const toUint8ClampedArray = (value_: string): Uint8ClampedArray => {
   }
 }
 
-export const toUint16Array = (value_: string): Uint16Array => {
+export const toUint16Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -271,7 +271,7 @@ export const toUint16Array = (value_: string): Uint16Array => {
   }
 }
 
-export const toUint32Array = (value_: string): Uint32Array => {
+export const toUint32Array = (value_: string) => {
   const value = isString().check(value_) as string
   try {
     const arr = toArray(value).map(Number)
@@ -285,7 +285,7 @@ export const toUint32Array = (value_: string): Uint32Array => {
   }
 }
 
-export const fromLiteral: Record<string, (value: string) => any> = {
+export const fromLiteral = {
   array: toArray,
   bigint: toBigInt,
   bigint64array: toBigInt64Array,

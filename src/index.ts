@@ -9,15 +9,15 @@ class TypedEnv {
   #env: Env
 
   constructor (source_?: object) {
-    const source = checkIs(source_, 'object', { allowUndefined: true })
+    const source = checkIs(source_, 'object', { allowUndefined: true }) as Record<string, string | undefined>
     this.#env = new Env(source)
   }
 
-  static get version (): string {
+  static get version () {
     return manifest.version
   }
 
-  get (key_: string, toType_: string = 'string', defaultValue_?: unknown): any {
+  get (key_: string, toType_: string = 'string', defaultValue_?: unknown) {
     const key = checkIs(key_, 'string') as string
     const toType = checkIs(toType_, 'string') as string
     const defaultValue = checkIs(defaultValue_, toType, { allowUndefined: true })
@@ -29,12 +29,12 @@ class TypedEnv {
     return convertTo(val, toType)
   }
 
-  has (key_: string): boolean {
+  has (key_: string) {
     const key = checkIs(key_, 'string') as string
     return this.#env.has(key)
   }
 
-  first (keys_: string[], toType_: string = 'string', defaultValue_?: unknown): any {
+  first (keys_: string[], toType_: string = 'string', defaultValue_?: unknown) {
     const keys = checkIs(keys_, 'array', { of: 'string' }) as string[]
     const toType = checkIs(toType_, 'string') as string
     const defaultValue = checkIs(defaultValue_, toType, { allowUndefined: true })
@@ -46,25 +46,25 @@ class TypedEnv {
     return convertTo(val, toType)
   }
 
-  require (key_: string, toType_: string = 'string'): any {
+  require (key_: string, toType_: string = 'string') {
     const key = checkIs(key_, 'string') as string
     const toType = checkIs(toType_, 'string') as string
     const val = this.#env.require(key)
     return convertTo(val, toType)
   }
 
-  requireFirst (keys_: string[], toType_: string = 'string'): any {
+  requireFirst (keys_: string[], toType_: string = 'string') {
     const keys = checkIs(keys_, 'array', { of: 'string' }) as string[]
     const toType = checkIs(toType_, 'string') as string
     const val = this.#env.requireFirst(keys)
     return convertTo(val, toType)
   }
 
-  get exists (): any {
+  get exists () {
     return this.#env.exists
   }
 
-  get required (): any {
+  get required () {
     return this.#env.required
   }
 }
