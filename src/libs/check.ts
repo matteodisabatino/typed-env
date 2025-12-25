@@ -1,4 +1,3 @@
-'use strict'
 import {
   Array,
   BigInt,
@@ -27,7 +26,7 @@ export const is = (value: unknown, type_: string, options_: Static<typeof CheckO
     throw new SyntaxError(`Unknown type "${type_}"`)
   }
 
-  const runtype = fromLiteral[lType](options)
+  const runtype = fromLiteral[lType]!(options)
   return runtype.check(value)
 }
 

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fromLiteral = exports.isUint32Array = exports.isUint16Array = exports.isUint8ClampedArray = exports.isUint8Array = exports.isSymbol = exports.isString = exports.isSet = exports.isRegExp = exports.isObject = exports.isNumber = exports.isMap = exports.isInt32Array = exports.isInt16Array = exports.isInt8Array = exports.isFunction = exports.isFloat64Array = exports.isFloat32Array = exports.isDate = exports.isBoolean = exports.isBigUint64Array = exports.isBigInt64Array = exports.isBigInt = exports.isArray = exports.is = void 0;
 const runtypes_1 = require("runtypes");
@@ -16,7 +16,7 @@ const is = (value, type_, options_ = {}) => {
 exports.is = is;
 const isArray = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false, of } = opts;
     let arrayElements;
     if (of === 'bigint') {
@@ -58,7 +58,7 @@ const isArray = (options_ = {}) => {
 exports.isArray = isArray;
 const isBigInt = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = runtypes_1.BigInt;
     if (allowUndefined) {
@@ -69,7 +69,7 @@ const isBigInt = (options_ = {}) => {
 exports.isBigInt = isBigInt;
 const isBigInt64Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof BigInt64Array);
     if (allowUndefined) {
@@ -80,7 +80,7 @@ const isBigInt64Array = (options_ = {}) => {
 exports.isBigInt64Array = isBigInt64Array;
 const isBigUint64Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof BigUint64Array);
     if (allowUndefined) {
@@ -91,7 +91,7 @@ const isBigUint64Array = (options_ = {}) => {
 exports.isBigUint64Array = isBigUint64Array;
 const isBoolean = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = runtypes_1.Boolean;
     if (allowUndefined) {
@@ -102,7 +102,7 @@ const isBoolean = (options_ = {}) => {
 exports.isBoolean = isBoolean;
 const isDate = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => !isNaN(new Date(obj).getTime()));
     if (allowUndefined) {
@@ -113,7 +113,7 @@ const isDate = (options_ = {}) => {
 exports.isDate = isDate;
 const isFloat32Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Float32Array);
     if (allowUndefined) {
@@ -124,7 +124,7 @@ const isFloat32Array = (options_ = {}) => {
 exports.isFloat32Array = isFloat32Array;
 const isFloat64Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Float64Array);
     if (allowUndefined) {
@@ -135,7 +135,7 @@ const isFloat64Array = (options_ = {}) => {
 exports.isFloat64Array = isFloat64Array;
 const isFunction = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = runtypes_1.Function;
     if (allowUndefined) {
@@ -146,7 +146,7 @@ const isFunction = (options_ = {}) => {
 exports.isFunction = isFunction;
 const isInt8Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Int8Array);
     if (allowUndefined) {
@@ -157,7 +157,7 @@ const isInt8Array = (options_ = {}) => {
 exports.isInt8Array = isInt8Array;
 const isInt16Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Int16Array);
     if (allowUndefined) {
@@ -168,7 +168,7 @@ const isInt16Array = (options_ = {}) => {
 exports.isInt16Array = isInt16Array;
 const isInt32Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Int32Array);
     if (allowUndefined) {
@@ -179,7 +179,7 @@ const isInt32Array = (options_ = {}) => {
 exports.isInt32Array = isInt32Array;
 const isMap = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Map);
     if (allowUndefined) {
@@ -190,7 +190,7 @@ const isMap = (options_ = {}) => {
 exports.isMap = isMap;
 const isNumber = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false, allowNaN = true } = opts;
     let fn = runtypes_1.Number;
     if (allowUndefined) {
@@ -204,7 +204,7 @@ const isNumber = (options_ = {}) => {
 exports.isNumber = isNumber;
 const isObject = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false, allowAnyPrototype = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => allowAnyPrototype ? typeof obj === 'object' : Object.prototype.toString.call(obj) === '[object Object]');
     if (allowUndefined) {
@@ -215,7 +215,7 @@ const isObject = (options_ = {}) => {
 exports.isObject = isObject;
 const isRegExp = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof RegExp);
     if (allowUndefined) {
@@ -226,7 +226,7 @@ const isRegExp = (options_ = {}) => {
 exports.isRegExp = isRegExp;
 const isSet = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Set);
     if (allowUndefined) {
@@ -237,7 +237,7 @@ const isSet = (options_ = {}) => {
 exports.isSet = isSet;
 const isString = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = runtypes_1.String;
     if (allowUndefined) {
@@ -248,7 +248,7 @@ const isString = (options_ = {}) => {
 exports.isString = isString;
 const isSymbol = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = runtypes_1.Symbol;
     if (allowUndefined) {
@@ -259,7 +259,7 @@ const isSymbol = (options_ = {}) => {
 exports.isSymbol = isSymbol;
 const isUint8Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint8Array);
     if (allowUndefined) {
@@ -270,7 +270,7 @@ const isUint8Array = (options_ = {}) => {
 exports.isUint8Array = isUint8Array;
 const isUint8ClampedArray = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint8ClampedArray);
     if (allowUndefined) {
@@ -281,7 +281,7 @@ const isUint8ClampedArray = (options_ = {}) => {
 exports.isUint8ClampedArray = isUint8ClampedArray;
 const isUint16Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint16Array);
     if (allowUndefined) {
@@ -292,7 +292,7 @@ const isUint16Array = (options_ = {}) => {
 exports.isUint16Array = isUint16Array;
 const isUint32Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
-    const opts = Object.assign({}, options);
+    const opts = { ...options };
     const { allowUndefined = false } = opts;
     let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint32Array);
     if (allowUndefined) {

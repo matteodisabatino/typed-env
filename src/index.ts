@@ -1,4 +1,3 @@
-'use strict'
 import { Env } from '@humanwhocodes/env'
 
 import { is as checkIs } from './libs/check'

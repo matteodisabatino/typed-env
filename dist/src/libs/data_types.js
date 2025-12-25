@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CheckOptions = void 0;
 const runtypes_1 = require("runtypes");

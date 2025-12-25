@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fromLiteral = exports.toUint32Array = exports.toUint16Array = exports.toUint8ClampedArray = exports.toUint8Array = exports.toSymbol = exports.toString = exports.toSet = exports.toRegExp = exports.toObject = exports.toNumber = exports.toMap = exports.toInt32Array = exports.toInt16Array = exports.toInt8Array = exports.toFunction = exports.toFloat64Array = exports.toFloat32Array = exports.toDate = exports.toBoolean = exports.toBigUint64Array = exports.toBigInt64Array = exports.toBigInt = exports.toArray = exports.to = void 0;
 const check_1 = require("./check");
@@ -18,7 +18,7 @@ const toArray = (value_) => {
         const arr = JSON.parse(value);
         return (0, check_1.isArray)().check(arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Array`);
     }
 };
@@ -28,7 +28,7 @@ const toBigInt = (value_) => {
     try {
         return BigInt(value);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to BigInt`);
     }
 };
@@ -39,7 +39,7 @@ const toBigInt64Array = (value_) => {
         const arr = (0, exports.toArray)(value).map(BigInt);
         return BigInt64Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to BigInt64Array`);
     }
 };
@@ -50,7 +50,7 @@ const toBigUint64Array = (value_) => {
         const arr = (0, exports.toArray)(value).map(BigInt);
         return BigUint64Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to BigUint64Array`);
     }
 };
@@ -70,13 +70,13 @@ const toDate = (value_) => {
         try {
             val = (0, exports.toNumber)(value);
         }
-        catch (_a) {
+        catch {
             val = value;
         }
         const date = new Date(val);
         return (0, check_1.isDate)().check(date);
     }
-    catch (_b) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Date`);
     }
 };
@@ -90,7 +90,7 @@ const toFloat32Array = (value_) => {
         }
         return Float32Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Float32Array`);
     }
 };
@@ -104,7 +104,7 @@ const toFloat64Array = (value_) => {
         }
         return Float64Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Float64Array`);
     }
 };
@@ -112,10 +112,11 @@ exports.toFloat64Array = toFloat64Array;
 const toFunction = (value_) => {
     const value = (0, check_1.isString)().check(value_);
     try {
+        // eslint-disable-next-line
         const fn = eval(value);
         return (0, check_1.isFunction)().check(fn);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Function`);
     }
 };
@@ -129,7 +130,7 @@ const toInt8Array = (value_) => {
         }
         return Int8Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Int8Array`);
     }
 };
@@ -143,7 +144,7 @@ const toInt16Array = (value_) => {
         }
         return Int16Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Int16Array`);
     }
 };
@@ -157,7 +158,7 @@ const toInt32Array = (value_) => {
         }
         return Int32Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Int32Array`);
     }
 };
@@ -169,7 +170,7 @@ const toMap = (value_) => {
         const obj = (0, check_1.isObject)({ allowAnyPrototype: true }).check(obj_);
         return new Map(Object.entries(obj));
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Map`);
     }
 };
@@ -180,7 +181,7 @@ const toNumber = (value_) => {
         const num = Number(value);
         return (0, check_1.isNumber)({ allowNaN: false }).check(num);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Number`);
     }
 };
@@ -191,7 +192,7 @@ const toObject = (value_) => {
         const obj = JSON.parse(value);
         return (0, check_1.isObject)().check(obj);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Object`);
     }
 };
@@ -201,7 +202,7 @@ const toRegExp = (value_) => {
     try {
         return new RegExp(value);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to RegExp`);
     }
 };
@@ -212,7 +213,7 @@ const toSet = (value_) => {
         const obj = (0, exports.toArray)(value);
         return new Set(obj);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Set`);
     }
 };
@@ -241,7 +242,7 @@ const toUint8Array = (value_) => {
         }
         return Uint8Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Uint8Array`);
     }
 };
@@ -255,7 +256,7 @@ const toUint8ClampedArray = (value_) => {
         }
         return Uint8ClampedArray.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Uint8ClampedArray`);
     }
 };
@@ -269,7 +270,7 @@ const toUint16Array = (value_) => {
         }
         return Uint16Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Uint16Array`);
     }
 };
@@ -283,7 +284,7 @@ const toUint32Array = (value_) => {
         }
         return Uint32Array.of(...arr);
     }
-    catch (_a) {
+    catch {
         throw new SyntaxError(`Unable to convert "${value_}" to Uint32Array`);
     }
 };

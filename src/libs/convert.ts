@@ -1,4 +1,3 @@
-'use strict'
 import {
   isArray,
   isDate,
@@ -16,7 +15,7 @@ export const to = (value_: string, type_: string): any => {
     throw new SyntaxError(`Unknown type "${type_}"`)
   }
 
-  return fromLiteral[type](value)
+  return fromLiteral[type]!(value)
 }
 
 export const toArray = (value_: string): any[] => {
@@ -115,6 +114,7 @@ export const toFloat64Array = (value_: string): Float64Array => {
 export const toFunction = (value_: string): Function => {
   const value = isString().check(value_) as string
   try {
+    // eslint-disable-next-line
     const fn = eval(value)
     return isFunction().check(fn) as Function
   } catch {
