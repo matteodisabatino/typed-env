@@ -6,10 +6,7 @@ const data_types_1 = require("./data_types");
 const is = (value, type_, options_ = {}) => {
     const type = (0, exports.isString)().check(type_);
     const options = data_types_1.CheckOptions.check(options_);
-    const lType = type.toLowerCase();
-    if (!(lType in exports.fromLiteral)) {
-        throw new SyntaxError(`Unknown type "${type_}"`);
-    }
+    const lType = runtypes_1.String.withGuard((k) => k in exports.fromLiteral).check(type.toLowerCase());
     const runtype = exports.fromLiteral[lType](options);
     return runtype.check(value);
 };
@@ -49,256 +46,258 @@ const isArray = (options_ = {}) => {
     else {
         arrayElements = runtypes_1.Unknown;
     }
-    let fn = (0, runtypes_1.Array)(arrayElements);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)((0, runtypes_1.Array)(arrayElements), runtypes_1.Undefined);
     }
-    return fn;
+    return (0, runtypes_1.Array)(arrayElements);
 };
 exports.isArray = isArray;
 const isBigInt = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = runtypes_1.BigInt;
+    const baseType = runtypes_1.BigInt;
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isBigInt = isBigInt;
 const isBigInt64Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof BigInt64Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof BigInt64Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isBigInt64Array = isBigInt64Array;
 const isBigUint64Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof BigUint64Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof BigUint64Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isBigUint64Array = isBigUint64Array;
 const isBoolean = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = runtypes_1.Boolean;
+    const baseType = runtypes_1.Boolean;
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isBoolean = isBoolean;
 const isDate = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => !isNaN(new Date(obj).getTime()));
+    const baseType = runtypes_1.Unknown.withGuard((obj) => !isNaN(new Date(obj).getTime()));
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isDate = isDate;
 const isFloat32Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Float32Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Float32Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isFloat32Array = isFloat32Array;
 const isFloat64Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Float64Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Float64Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isFloat64Array = isFloat64Array;
 const isFunction = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = runtypes_1.Function;
+    const baseType = runtypes_1.Function;
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isFunction = isFunction;
 const isInt8Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Int8Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Int8Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isInt8Array = isInt8Array;
 const isInt16Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Int16Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Int16Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isInt16Array = isInt16Array;
 const isInt32Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Int32Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Int32Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isInt32Array = isInt32Array;
 const isMap = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Map);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Map);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isMap = isMap;
 const isNumber = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false, allowNaN = true } = opts;
-    let fn = runtypes_1.Number;
+    const baseType = runtypes_1.Number;
+    if (allowUndefined && !allowNaN) {
+        return (0, runtypes_1.Union)(baseType.withConstraint((obj) => allowUndefined ? typeof obj === 'undefined' || !isNaN(obj) : !isNaN(obj)), runtypes_1.Undefined);
+    }
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
     if (!allowNaN) {
-        fn = fn.withConstraint((obj) => allowUndefined ? typeof obj === 'undefined' || !isNaN(obj) : !isNaN(obj));
+        return baseType.withConstraint((obj) => allowUndefined ? typeof obj === 'undefined' || !isNaN(obj) : !isNaN(obj));
     }
-    return fn;
+    return baseType;
 };
 exports.isNumber = isNumber;
 const isObject = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false, allowAnyPrototype = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => allowAnyPrototype ? typeof obj === 'object' : Object.prototype.toString.call(obj) === '[object Object]');
+    const baseType = runtypes_1.Unknown.withGuard((obj) => allowAnyPrototype ? typeof obj === 'object' : Object.prototype.toString.call(obj) === '[object Object]');
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isObject = isObject;
 const isRegExp = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof RegExp);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof RegExp);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isRegExp = isRegExp;
 const isSet = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Set);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Set);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isSet = isSet;
 const isString = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = runtypes_1.String;
+    const baseType = runtypes_1.String;
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isString = isString;
 const isSymbol = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = runtypes_1.Symbol;
+    const baseType = runtypes_1.Symbol;
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isSymbol = isSymbol;
 const isUint8Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint8Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Uint8Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isUint8Array = isUint8Array;
 const isUint8ClampedArray = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint8ClampedArray);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Uint8ClampedArray);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isUint8ClampedArray = isUint8ClampedArray;
 const isUint16Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint16Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Uint16Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isUint16Array = isUint16Array;
 const isUint32Array = (options_ = {}) => {
     const options = data_types_1.CheckOptions.check(options_);
     const opts = { ...options };
     const { allowUndefined = false } = opts;
-    let fn = (0, runtypes_1.Guard)((obj) => obj instanceof Uint32Array);
+    const baseType = runtypes_1.Unknown.withGuard((obj) => obj instanceof Uint32Array);
     if (allowUndefined) {
-        fn = fn.Or(runtypes_1.Undefined);
+        return (0, runtypes_1.Union)(baseType, runtypes_1.Undefined);
     }
-    return fn;
+    return baseType;
 };
 exports.isUint32Array = isUint32Array;
 exports.fromLiteral = {

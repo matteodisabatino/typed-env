@@ -45,18 +45,18 @@
     },
     "homepage": "https://github.com/matteodisabatino/typed-env#readme",
     "dependencies": {
-        "@humanwhocodes/env": "^3.0.1",
-        "runtypes": "^6.7.0"
+        "@humanwhocodes/env": "^4.0.1",
+        "runtypes": "^7.0.4"
     },
     "devDependencies": {
         "@types/node": "^25.0.3",
         "eslint": "^9.39.2",
         "neostandard": "^0.12.2",
-        "rimraf": "^5.0.5",
+        "rimraf": "^6.1.2",
         "tsx": "^4.21.0",
         "typescript": "^5.2.2"
     },
     "engines": {
-        "node": ">=18"
+        "node": "^16.20.0 || ^18.0.0 || ^20.0.0 || >=22.0.0"
     }
 }

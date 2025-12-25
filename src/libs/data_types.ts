@@ -1,12 +1,12 @@
 import {
   Boolean,
-  Partial,
+  Object,
   String
 } from 'runtypes'
 
-export const CheckOptions = Partial({
-  allowUndefined: Boolean,
-  allowNaN: Boolean,
-  allowAnyPrototype: Boolean,
-  of: String
+export const CheckOptions = Object({
+  allowUndefined: Boolean.undefinedable().optional(),
+  allowNaN: Boolean.undefinedable().optional(),
+  allowAnyPrototype: Boolean.undefinedable().optional(),
+  of: String.undefinedable().optional()
 })

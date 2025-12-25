@@ -190,7 +190,7 @@ test('Should convert to Uint32Array', () => {
 test('Should throw an exception because of unknown conversion type', () => {
   assert.throws(
     () => env.get('TO_STRING', 'wrongType'),
-    { name: 'SyntaxError', message: 'Unknown type "wrongType"' }
+    { name: 'ValidationError', message: 'Constraint failed' }
   )
 })
 

@@ -3,16 +3,15 @@ import {
   BigInt,
   Boolean,
   Function,
-  Guard,
   Never,
   Null,
   Nullish,
   Number,
-  type Runtype,
   type Static,
   String,
   Symbol,
   Undefined,
+  Union,
   Unknown
 } from 'runtypes'
 
@@ -21,20 +20,16 @@ import { CheckOptions } from './data_types'
 export const is = (value: unknown, type_: string, options_: Static<typeof CheckOptions> = {}): any => {
   const type = isString().check(type_) as string
   const options = CheckOptions.check(options_)
-  const lType = type.toLowerCase()
-  if (!(lType in fromLiteral)) {
-    throw new SyntaxError(`Unknown type "${type_}"`)
-  }
-
-  const runtype = fromLiteral[lType]!(options)
+  const lType = String.withGuard((k: string): k is keyof typeof fromLiteral => k in fromLiteral).check(type.toLowerCase())
+  const runtype = fromLiteral[lType](options)
   return runtype.check(value)
 }
 
-export const isArray = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isArray = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false, of } = opts
-  let arrayElements: Runtype
+  let arrayElements
   if (of === 'bigint') {
     arrayElements = BigInt
   } else if (of === 'boolean') {
@@ -57,283 +52,286 @@ export const isArray = (options_: Static<typeof CheckOptions> = {}): Runtype => 
     arrayElements = Unknown
   }
 
-  let fn: Runtype = Array(arrayElements)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(Array(arrayElements), Undefined)
   }
 
-  return fn
+  return Array(arrayElements)
 }
 
-export const isBigInt = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isBigInt = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = BigInt
+  const baseType = BigInt
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isBigInt64Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isBigInt64Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is BigInt64Array => obj instanceof BigInt64Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is BigInt64Array => obj instanceof BigInt64Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isBigUint64Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isBigUint64Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is BigUint64Array => obj instanceof BigUint64Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is BigUint64Array => obj instanceof BigUint64Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isBoolean = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isBoolean = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Boolean
+  const baseType = Boolean
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isDate = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isDate = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Date => !isNaN(new Date(obj as any).getTime()))
+  const baseType = Unknown.withGuard((obj: unknown): obj is Date => !isNaN(new Date(obj as any).getTime()))
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isFloat32Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isFloat32Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Float32Array => obj instanceof Float32Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Float32Array => obj instanceof Float32Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isFloat64Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isFloat64Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Float64Array => obj instanceof Float64Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Float64Array => obj instanceof Float64Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isFunction = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isFunction = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Function
+  const baseType = Function
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isInt8Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isInt8Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Int8Array => obj instanceof Int8Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Int8Array => obj instanceof Int8Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isInt16Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isInt16Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Int16Array => obj instanceof Int16Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Int16Array => obj instanceof Int16Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isInt32Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isInt32Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Int32Array => obj instanceof Int32Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Int32Array => obj instanceof Int32Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isMap = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isMap = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Map<unknown, unknown> => obj instanceof Map)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Map<unknown, unknown> => obj instanceof Map)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isNumber = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isNumber = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false, allowNaN = true } = opts
-  let fn: Runtype = Number
+  const baseType = Number
+  if (allowUndefined && !allowNaN) {
+    return Union(baseType.withConstraint((obj: unknown) => allowUndefined ? typeof obj === 'undefined' || !isNaN(obj as any) : !isNaN(obj as any)), Undefined)
+  }
+
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
   if (!allowNaN) {
-    fn = fn.withConstraint((obj: unknown) => allowUndefined ? typeof obj === 'undefined' || !isNaN(obj as any) : !isNaN(obj as any))
+    return baseType.withConstraint((obj: unknown) => allowUndefined ? typeof obj === 'undefined' || !isNaN(obj as any) : !isNaN(obj as any))
   }
 
-  return fn
+  return baseType
 }
 
-export const isObject = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isObject = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false, allowAnyPrototype = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is object => allowAnyPrototype ? typeof obj === 'object' : Object.prototype.toString.call(obj) === '[object Object]')
+  const baseType = Unknown.withGuard((obj: unknown): obj is object => allowAnyPrototype ? typeof obj === 'object' : Object.prototype.toString.call(obj) === '[object Object]')
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isRegExp = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isRegExp = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is RegExp => obj instanceof RegExp)
+  const baseType = Unknown.withGuard((obj: unknown): obj is RegExp => obj instanceof RegExp)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isSet = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isSet = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Set<unknown> => obj instanceof Set)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Set<unknown> => obj instanceof Set)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isString = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isString = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = String
+  const baseType = String
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isSymbol = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isSymbol = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Symbol
+  const baseType = Symbol
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isUint8Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isUint8Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Uint8Array => obj instanceof Uint8Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Uint8Array => obj instanceof Uint8Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isUint8ClampedArray = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isUint8ClampedArray = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Uint8ClampedArray => obj instanceof Uint8ClampedArray)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Uint8ClampedArray => obj instanceof Uint8ClampedArray)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isUint16Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isUint16Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Uint16Array => obj instanceof Uint16Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Uint16Array => obj instanceof Uint16Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const isUint32Array = (options_: Static<typeof CheckOptions> = {}): Runtype => {
+export const isUint32Array = (options_: Static<typeof CheckOptions> = {}) => {
   const options = CheckOptions.check(options_)
   const opts = { ...options }
   const { allowUndefined = false } = opts
-  let fn: Runtype = Guard((obj: unknown): obj is Uint32Array => obj instanceof Uint32Array)
+  const baseType = Unknown.withGuard((obj: unknown): obj is Uint32Array => obj instanceof Uint32Array)
   if (allowUndefined) {
-    fn = fn.Or(Undefined)
+    return Union(baseType, Undefined)
   }
 
-  return fn
+  return baseType
 }
 
-export const fromLiteral: Record<string, (options: Static<typeof CheckOptions>) => Runtype> = {
+export const fromLiteral = {
   array: isArray,
   bigint: isBigInt,
   bigint64array: isBigInt64Array,
