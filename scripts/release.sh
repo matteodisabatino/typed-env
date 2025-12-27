@@ -39,7 +39,8 @@ echo "🔍 Ultimo tag rilevato: ${LAST_TAG}"
 # VERSION BUMP
 # ==============================
 OLD_VERSION=$(node -p "require('./package.json').version")
-NEW_VERSION=$(npm version "${BUMP}" --no-git-tag-version)
+RAW_VERSION=$(npm version "${BUMP}" --no-git-tag-version)
+NEW_VERSION="${RAW_VERSION#v}"NEW_VERSION=$(npm version "${BUMP}" --no-git-tag-version)
 
 echo "🔖 Versione: ${OLD_VERSION} → ${NEW_VERSION}"
 
