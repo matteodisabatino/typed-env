@@ -32,7 +32,6 @@ fi
 # LAST TAG
 # ==============================
 LAST_TAG=$(git describe --tags --abbrev=0)
-
 echo "🔍 Ultimo tag rilevato: ${LAST_TAG}"
 
 # ==============================
@@ -48,6 +47,14 @@ echo "🔖 Versione: ${OLD_VERSION} → ${NEW_VERSION}"
 # ==============================
 echo "📝 Aggiornamento CHANGELOG.md..."
 conventional-changelog -p "${CHANGELOG_PRESET}" -i "${CHANGELOG_FILE}" -s --from "${LAST_TAG}"
+
+# ==============================
+# EXTRACT RELEASE NOTES
+# ==============================
+RELEASE_NOTES_FILE=$(mktemp)
+
+# Estrae solo la sezione della versione corrente dal CHANGELOG
+sed -n "/^#\\{1,2\\} \\[${NEW_VERSION}\\]/,/^#\\{1,2\\} \\[/p" "${CHANGELOG_FILE}" | sed '$d' > "${RELEASE_NOTES_FILE}"
 
 # ==============================
 # OVERWRITE package.json in dist
@@ -75,7 +82,12 @@ git push origin "${NEW_VERSION}"
 # GITHUB RELEASE
 # ==============================
 echo "🚀 Creazione GitHub Release..."
-gh release create "${NEW_VERSION}" --title "Release ${NEW_VERSION}" --notes-from-tag
+gh release create "${NEW_VERSION}"  --title "Release ${NEW_VERSION}"  --notes-file "${RELEASE_NOTES_FILE}"
+
+# ==============================
+# CLEANUP
+# ==============================
+rm -f "${RELEASE_NOTES_FILE}"
 
 # ==============================
 # NPM PUBLISH
