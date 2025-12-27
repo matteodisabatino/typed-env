@@ -48,11 +48,7 @@ echo "🔖 Versione: ${OLD_VERSION} → ${NEW_VERSION}"
 # CHANGELOG
 # ==============================
 echo "📝 Aggiornamento CHANGELOG.md..."
-conventional-changelog \
-  -p "${CHANGELOG_PRESET}" \
-  -i "${CHANGELOG_FILE}" \
-  -s \
-  --from "${LAST_TAG}"
+conventional-changelog -p "${CHANGELOG_PRESET}" -i "${CHANGELOG_FILE}" -s --from "${LAST_TAG}"
 
 # ==============================
 # OVERWRITE package.json in dist
@@ -80,9 +76,7 @@ git push origin "${NEW_VERSION}"
 # GITHUB RELEASE
 # ==============================
 echo "🚀 Creazione GitHub Release..."
-gh release create "${NEW_VERSION}" \
-  --title "${NEW_VERSION}" \
-  --notes-file "${CHANGELOG_FILE}"
+gh release create "${NEW_VERSION}" --title "${NEW_VERSION}" --notes-from-tag
 
 # ==============================
 # NPM PUBLISH
