@@ -75,7 +75,7 @@ git push origin "${NEW_VERSION}"
 # GITHUB RELEASE
 # ==============================
 echo "🚀 Creazione GitHub Release..."
-gh release create "${NEW_VERSION}" --title "${NEW_VERSION}" --notes-from-tag
+gh release create "${NEW_VERSION}" --title "Release ${NEW_VERSION}" --notes-from-tag
 
 # ==============================
 # NPM PUBLISH
