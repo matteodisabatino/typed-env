@@ -29,6 +29,13 @@ if [[ "${CURRENT_BRANCH}" != "${DEFAULT_BRANCH}" ]]; then
 fi
 
 # ==============================
+# LAST TAG
+# ==============================
+LAST_TAG=$(git describe --tags --abbrev=0)
+
+echo "🔍 Ultimo tag rilevato: ${LAST_TAG}"
+
+# ==============================
 # VERSION BUMP
 # ==============================
 OLD_VERSION=$(node -p "require('./package.json').version")
@@ -43,7 +50,8 @@ echo "📝 Aggiornamento CHANGELOG.md..."
 conventional-changelog \
   -p "${CHANGELOG_PRESET}" \
   -i "${CHANGELOG_FILE}" \
-  -s
+  -s \
+  --from "${LAST_TAG}"
 
 # ==============================
 # OVERWRITE package.json in dist
