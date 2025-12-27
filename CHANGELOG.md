@@ -1,14 +1,12 @@
-## [3.0.1](https://github.com/matteodisabatino/typed-env/compare/v3.0.0...v3.0.1) (2025-12-25)
+## [3.0.1](https://github.com/matteodisabatino/typed-env/compare/3.0.0...3.0.1) (2025-12-25)
 
 
 
-# [3.0.0](https://github.com/matteodisabatino/typed-env/compare/2.0.0...3.0.0) (2025-12-25)
+# [3.0.0](https://github.com/matteodisabatino/typed-env/compare/2.0.0...3.0.0) (2025-12-24)
 
 
 
-
-
-# 2.0.0 (2023-11-08)
+# [2.0.0](https://github.com/matteodisabatino/typed-env/compare/1.0.2...2.0.0) (2023-11-08)
 
 
 ### Code Refactoring
@@ -20,11 +18,17 @@
 
 * node versions prior to 18 are now unsupported
 
-## 1.0.2 (2023-11-08)
 
-## 1.0.1 (2023-11-08)
 
-# 1.0.0 (2022-10-02)
+## [1.0.2](https://github.com/matteodisabatino/typed-env/compare/1.0.1...1.0.2) (2023-11-08)
+
+
+
+## [1.0.1](https://github.com/matteodisabatino/typed-env/compare/1.0.0...1.0.1) (2023-11-08)
+
+
+
+# [1.0.0](https://github.com/matteodisabatino/typed-env/compare/d63857926a39c87795807dffa43ba096366007d0...1.0.0) (2022-10-02)
 
 
 ### Code Refactoring
@@ -35,3 +39,6 @@
 ### BREAKING CHANGES
 
 * module created
+
+
+
