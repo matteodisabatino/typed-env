@@ -93,7 +93,7 @@ run "cp package.json dist"
 # GIT COMMIT
 # ==============================
 run "git add package.json dist '${CHANGELOG_FILE}'"
-run "git commit -m 'chore(release): ${NEW_VERSION}'"
+run "git commit -m 'Release ${NEW_VERSION}'"
 
 # ==============================
 # GIT TAG (NO 'v')
