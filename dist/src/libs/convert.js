@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fromLiteral = exports.toUint32Array = exports.toUint16Array = exports.toUint8ClampedArray = exports.toUint8Array = exports.toSymbol = exports.toString = exports.toSet = exports.toRegExp = exports.toObject = exports.toNumber = exports.toMap = exports.toInt32Array = exports.toInt16Array = exports.toInt8Array = exports.toFunction = exports.toFloat64Array = exports.toFloat32Array = exports.toDate = exports.toBoolean = exports.toBigUint64Array = exports.toBigInt64Array = exports.toBigInt = exports.toArray = exports.to = void 0;
-const runtypes_1 = require("runtypes");
 const check_1 = require("./check");
 const to = (value_, type_) => {
     const value = (0, check_1.isString)().check(value_);
     const type = (0, check_1.isString)().check(type_);
-    const lType = runtypes_1.String.withGuard((k) => k in exports.fromLiteral).check(type.toLowerCase());
+    const lType = (0, check_1.isString)().withGuard((k) => k in exports.fromLiteral).check(type.toLowerCase());
     return exports.fromLiteral[lType](value);
 };
 exports.to = to;
@@ -34,7 +33,7 @@ exports.toBigInt = toBigInt;
 const toBigInt64Array = (value_) => {
     const value = (0, check_1.isString)().check(value_);
     try {
-        const arr = (0, exports.toArray)(value).map(BigInt);
+        const arr = (0, exports.toArray)(value).map(x => BigInt(x));
         return BigInt64Array.of(...arr);
     }
     catch {
@@ -45,7 +44,7 @@ exports.toBigInt64Array = toBigInt64Array;
 const toBigUint64Array = (value_) => {
     const value = (0, check_1.isString)().check(value_);
     try {
-        const arr = (0, exports.toArray)(value).map(BigInt);
+        const arr = (0, exports.toArray)(value).map(x => BigInt(x));
         return BigUint64Array.of(...arr);
     }
     catch {

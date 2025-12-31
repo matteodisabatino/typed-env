@@ -25,7 +25,7 @@ test('Should convert to Array', () => {
 
 test('Should convert to BigInt', () => {
   const toBigInt = env.get('TO_BIG_INT', 'bigint')
-  assert.equal(typeof toBigInt, 'bigint')
+  assert.ok(typeof toBigInt === 'bigint')
   assert.equal(toBigInt, BigInt(42))
 })
 
@@ -47,7 +47,7 @@ test('Should convert to BigUint64Array', () => {
 
 test('Should convert to Boolean', () => {
   const v = env.get('TO_BOOLEAN', 'boolean')
-  assert.equal(typeof v, 'boolean')
+  assert.ok(typeof v === 'boolean')
   assert.equal(v, false)
 })
 
@@ -81,7 +81,7 @@ test('Should convert to Float64Array', () => {
 
 test('Should convert to Function', () => {
   const fn = env.get('TO_FUNCTION', 'function')
-  assert.equal(typeof fn, 'function')
+  assert.ok(typeof fn === 'function')
   assert.equal(fn(8), 64)
 })
 
@@ -119,7 +119,7 @@ test('Should convert to Map', () => {
 
 test('Should convert to Number', () => {
   const v = env.get('TO_NUMBER', 'number')
-  assert.equal(typeof v, 'number')
+  assert.ok(typeof v === 'number')
   assert.equal(v, 5)
 })
 
@@ -145,13 +145,13 @@ test('Should convert to Set', () => {
 
 test('Should convert to String', () => {
   const v = env.get('TO_STRING', 'string')
-  assert.equal(typeof v, 'string')
+  assert.ok(typeof v === 'string')
   assert.equal(v, 'test')
 })
 
 test('Should convert to Symbol', () => {
   const v = env.get('TO_SYMBOL', 'symbol')
-  assert.equal(typeof v, 'symbol')
+  assert.ok(typeof v === 'symbol')
   assert.equal(v.toString(), 'Symbol(foo)')
 })
 
@@ -190,7 +190,7 @@ test('Should convert to Uint32Array', () => {
 test('Should throw an exception because of unknown conversion type', () => {
   assert.throws(
     () => env.get('TO_STRING', 'wrongType'),
-    { name: 'ValidationError', message: 'Constraint failed' }
+    { name: 'SyntaxError', message: 'Unknown type "wrongType"' }
   )
 })
 

@@ -1,8 +1,4 @@
 import {
-  String,
-} from 'runtypes'
-
-import {
   isArray,
   isDate,
   isFunction,
@@ -14,7 +10,7 @@ import {
 export const to = (value_: string, type_: string) => {
   const value = isString().check(value_)
   const type = isString().check(type_)
-  const lType = String.withGuard((k: string): k is keyof typeof fromLiteral => k in fromLiteral).check(type.toLowerCase())
+  const lType = isString().withGuard((k: string): k is keyof typeof fromLiteral => k in fromLiteral).check(type.toLowerCase())
   return fromLiteral[lType](value)
 }
 
@@ -22,14 +18,14 @@ export const toArray = (value_: string) => {
   const value = isString().check(value_)
   try {
     const arr = JSON.parse(value)
-    return isArray().check(arr) as any[]
+    return isArray().check(arr)
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to Array`)
   }
 }
 
 export const toBigInt = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     return BigInt(value)
   } catch {
@@ -38,9 +34,9 @@ export const toBigInt = (value_: string) => {
 }
 
 export const toBigInt64Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
-    const arr = toArray(value).map(BigInt)
+    const arr = toArray(value).map(x => BigInt(x as any))
     return BigInt64Array.of(...arr)
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to BigInt64Array`)
@@ -48,9 +44,9 @@ export const toBigInt64Array = (value_: string) => {
 }
 
 export const toBigUint64Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
-    const arr = toArray(value).map(BigInt)
+    const arr = toArray(value).map(x => BigInt(x as any))
     return BigUint64Array.of(...arr)
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to BigUint64Array`)
@@ -58,7 +54,7 @@ export const toBigUint64Array = (value_: string) => {
 }
 
 export const toBoolean = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   if (!/^(?:true|false)$/.test(value)) {
     throw new SyntaxError(`Unable to convert "${value_}" to Boolean`)
   }
@@ -67,7 +63,7 @@ export const toBoolean = (value_: string) => {
 }
 
 export const toDate = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     let val: number | string
     try {
@@ -77,14 +73,14 @@ export const toDate = (value_: string) => {
     }
 
     const date = new Date(val)
-    return isDate().check(date) as Date
+    return isDate().check(date)
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to Date`)
   }
 }
 
 export const toFloat32Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -98,7 +94,7 @@ export const toFloat32Array = (value_: string) => {
 }
 
 export const toFloat64Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -112,18 +108,18 @@ export const toFloat64Array = (value_: string) => {
 }
 
 export const toFunction = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     // eslint-disable-next-line
     const fn = eval(value)
-    return isFunction().check(fn) as Function
+    return isFunction().check(fn)
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to Function`)
   }
 }
 
 export const toInt8Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -137,7 +133,7 @@ export const toInt8Array = (value_: string) => {
 }
 
 export const toInt16Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -151,7 +147,7 @@ export const toInt16Array = (value_: string) => {
 }
 
 export const toInt32Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -165,10 +161,10 @@ export const toInt32Array = (value_: string) => {
 }
 
 export const toMap = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const obj_ = JSON.parse(value)
-    const obj = isObject({ allowAnyPrototype: true }).check(obj_) as object
+    const obj = isObject({ allowAnyPrototype: true }).check(obj_)
     return new Map(Object.entries(obj))
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to Map`)
@@ -176,27 +172,27 @@ export const toMap = (value_: string) => {
 }
 
 export const toNumber = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const num = Number(value)
-    return isNumber({ allowNaN: false }).check(num) as number
+    return isNumber({ allowNaN: false }).check(num)
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to Number`)
   }
 }
 
 export const toObject = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const obj = JSON.parse(value)
-    return isObject().check(obj) as object
+    return isObject().check(obj)
   } catch {
     throw new SyntaxError(`Unable to convert "${value_}" to Object`)
   }
 }
 
 export const toRegExp = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     return new RegExp(value)
   } catch {
@@ -205,7 +201,7 @@ export const toRegExp = (value_: string) => {
 }
 
 export const toSet = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const obj = toArray(value)
     return new Set(obj)
@@ -215,14 +211,14 @@ export const toSet = (value_: string) => {
 }
 
 export const toString = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   // if value_ passes the check it is per sure a string, so the only thing to
   // do is to returning it
   return value
 }
 
 export const toSymbol = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   // if value_ passes the check it is per sure a string, so the only thing to
   // do is to create a Symbol and returning it since is always possibile to
   // create a Symbol from String
@@ -230,7 +226,7 @@ export const toSymbol = (value_: string) => {
 }
 
 export const toUint8Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -244,7 +240,7 @@ export const toUint8Array = (value_: string) => {
 }
 
 export const toUint8ClampedArray = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -258,7 +254,7 @@ export const toUint8ClampedArray = (value_: string) => {
 }
 
 export const toUint16Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {
@@ -272,7 +268,7 @@ export const toUint16Array = (value_: string) => {
 }
 
 export const toUint32Array = (value_: string) => {
-  const value = isString().check(value_) as string
+  const value = isString().check(value_)
   try {
     const arr = toArray(value).map(Number)
     if (arr.some(isNaN)) {

@@ -1,52 +1,82 @@
-import { Array, BigInt, Boolean, Function, Never, Number, type Static, String, Symbol, Union, Unknown } from 'runtypes';
+import { type Static } from 'runtypes';
 import { CheckOptions } from './data_types';
-export declare const is: (value: unknown, type_: string, options_?: Static<typeof CheckOptions>) => string | number | bigint | boolean | symbol | object | RegExp | unknown[] | Date | Int8Array<ArrayBufferLike> | Uint8Array<ArrayBufferLike> | Uint8ClampedArray<ArrayBufferLike> | Int16Array<ArrayBufferLike> | Uint16Array<ArrayBufferLike> | Int32Array<ArrayBufferLike> | Uint32Array<ArrayBufferLike> | Float32Array<ArrayBufferLike> | Float64Array<ArrayBufferLike> | BigUint64Array<ArrayBufferLike> | BigInt64Array<ArrayBufferLike> | ((...args: never[]) => unknown) | Map<unknown, unknown> | Set<unknown> | undefined;
-export declare const isArray: (options_?: Static<typeof CheckOptions>) => Array<BigInt | Boolean | Function | Never | Number | String | Unknown | import("runtypes").Literal<null> | import("runtypes").Literal<undefined> | Union<[import("runtypes").Literal<null>, import("runtypes").Literal<undefined>]>> | Union<[Array<BigInt | Boolean | Function | Never | Number | String | Unknown | import("runtypes").Literal<null> | import("runtypes").Literal<undefined> | Union<[import("runtypes").Literal<null>, import("runtypes").Literal<undefined>]>>, import("runtypes").Literal<undefined>]>;
-export declare const isBigInt: (options_?: Static<typeof CheckOptions>) => BigInt | Union<[BigInt, import("runtypes").Literal<undefined>]>;
-export declare const isBigInt64Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, BigInt64Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, BigInt64Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isBigUint64Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, BigUint64Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, BigUint64Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isBoolean: (options_?: Static<typeof CheckOptions>) => Boolean | Union<[Boolean, import("runtypes").Literal<undefined>]>;
-export declare const isDate: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Date> | Union<[import("runtypes").Constraint<Unknown, Date>, import("runtypes").Literal<undefined>]>;
-export declare const isFloat32Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Float32Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Float32Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isFloat64Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Float64Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Float64Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isFunction: (options_?: Static<typeof CheckOptions>) => Function | Union<[Function, import("runtypes").Literal<undefined>]>;
-export declare const isInt8Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Int8Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Int8Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isInt16Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Int16Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Int16Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isInt32Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Int32Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Int32Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isMap: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Map<unknown, unknown>> | Union<[import("runtypes").Constraint<Unknown, Map<unknown, unknown>>, import("runtypes").Literal<undefined>]>;
-export declare const isNumber: (options_?: Static<typeof CheckOptions>) => Number | import("runtypes").Constraint<Number, number> | Union<[import("runtypes").Constraint<Number, number>, import("runtypes").Literal<undefined>]> | Union<[Number, import("runtypes").Literal<undefined>]>;
-export declare const isObject: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, object> | Union<[import("runtypes").Constraint<Unknown, object>, import("runtypes").Literal<undefined>]>;
-export declare const isRegExp: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, RegExp> | Union<[import("runtypes").Constraint<Unknown, RegExp>, import("runtypes").Literal<undefined>]>;
-export declare const isSet: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Set<unknown>> | Union<[import("runtypes").Constraint<Unknown, Set<unknown>>, import("runtypes").Literal<undefined>]>;
-export declare const isString: (options_?: Static<typeof CheckOptions>) => String | Union<[String, import("runtypes").Literal<undefined>]>;
-export declare const isSymbol: (options_?: Static<typeof CheckOptions>) => Symbol<never> | Union<[Symbol<never>, import("runtypes").Literal<undefined>]>;
-export declare const isUint8Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint8Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint8Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isUint8ClampedArray: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint8ClampedArray<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint8ClampedArray<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isUint16Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint16Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint16Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const isUint32Array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint32Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint32Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-export declare const fromLiteral: {
-    array: (options_?: Static<typeof CheckOptions>) => Array<BigInt | Boolean | Function | Never | Number | String | Unknown | import("runtypes").Literal<null> | import("runtypes").Literal<undefined> | Union<[import("runtypes").Literal<null>, import("runtypes").Literal<undefined>]>> | Union<[Array<BigInt | Boolean | Function | Never | Number | String | Unknown | import("runtypes").Literal<null> | import("runtypes").Literal<undefined> | Union<[import("runtypes").Literal<null>, import("runtypes").Literal<undefined>]>>, import("runtypes").Literal<undefined>]>;
-    bigint: (options_?: Static<typeof CheckOptions>) => BigInt | Union<[BigInt, import("runtypes").Literal<undefined>]>;
-    bigint64array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, BigInt64Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, BigInt64Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    biguint64array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, BigUint64Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, BigUint64Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    boolean: (options_?: Static<typeof CheckOptions>) => Boolean | Union<[Boolean, import("runtypes").Literal<undefined>]>;
-    date: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Date> | Union<[import("runtypes").Constraint<Unknown, Date>, import("runtypes").Literal<undefined>]>;
-    float32array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Float32Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Float32Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    float64array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Float64Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Float64Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    function: (options_?: Static<typeof CheckOptions>) => Function | Union<[Function, import("runtypes").Literal<undefined>]>;
-    int8array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Int8Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Int8Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    int16array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Int16Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Int16Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    int32array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Int32Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Int32Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    map: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Map<unknown, unknown>> | Union<[import("runtypes").Constraint<Unknown, Map<unknown, unknown>>, import("runtypes").Literal<undefined>]>;
-    number: (options_?: Static<typeof CheckOptions>) => Number | import("runtypes").Constraint<Number, number> | Union<[import("runtypes").Constraint<Number, number>, import("runtypes").Literal<undefined>]> | Union<[Number, import("runtypes").Literal<undefined>]>;
-    object: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, object> | Union<[import("runtypes").Constraint<Unknown, object>, import("runtypes").Literal<undefined>]>;
-    regexp: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, RegExp> | Union<[import("runtypes").Constraint<Unknown, RegExp>, import("runtypes").Literal<undefined>]>;
-    set: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Set<unknown>> | Union<[import("runtypes").Constraint<Unknown, Set<unknown>>, import("runtypes").Literal<undefined>]>;
-    string: (options_?: Static<typeof CheckOptions>) => String | Union<[String, import("runtypes").Literal<undefined>]>;
-    symbol: (options_?: Static<typeof CheckOptions>) => Symbol<never> | Union<[Symbol<never>, import("runtypes").Literal<undefined>]>;
-    uint8array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint8Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint8Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    uint8clampedarray: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint8ClampedArray<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint8ClampedArray<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    uint16array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint16Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint16Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-    uint32array: (options_?: Static<typeof CheckOptions>) => import("runtypes").Constraint<Unknown, Uint32Array<ArrayBufferLike>> | Union<[import("runtypes").Constraint<Unknown, Uint32Array<ArrayBufferLike>>, import("runtypes").Literal<undefined>]>;
-};
+import type * as returnTypes from '../types/returns';
+export declare const is: <O extends {
+    allowUndefined?: boolean;
+    allowNaN?: boolean;
+    allowAnyPrototype?: boolean;
+    of?: keyof returnTypes.ArrayElementMap;
+}, T extends keyof returnTypes.IsReturnMap<O>>(value: unknown, type_: T, options_?: O & Static<typeof CheckOptions>) => returnTypes.IsReturnMap<O>[T];
+export declare const isArray: <O extends {
+    allowUndefined?: boolean;
+    of?: keyof returnTypes.ArrayElementMap;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.ArrayReturn<O>;
+export declare const isBigInt: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.BigIntReturn<O>;
+export declare const isBigInt64Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.BigInt64ArrayReturn<O>;
+export declare const isBigUint64Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.BigUint64ArrayReturn<O>;
+export declare const isBoolean: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.BooleanReturn<O>;
+export declare const isDate: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.DateReturn<O>;
+export declare const isFloat32Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Float32ArrayReturn<O>;
+export declare const isFloat64Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Float64ArrayReturn<O>;
+export declare const isFunction: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.FunctionReturn<O>;
+export declare const isInt8Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Int8ArrayReturn<O>;
+export declare const isInt16Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Int16ArrayReturn<O>;
+export declare const isInt32Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Int32ArrayReturn<O>;
+export declare const isMap: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.MapReturn<O>;
+export declare const isNumber: <O extends {
+    allowUndefined?: boolean;
+    allowNaN?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.NumberReturn<O>;
+export declare const isObject: <O extends {
+    allowUndefined?: boolean;
+    allowAnyPrototype?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.ObjectReturn<O>;
+export declare const isRegExp: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.RegExpReturn<O>;
+export declare const isSet: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.SetReturn<O>;
+export declare const isString: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.StringReturn<O>;
+export declare const isSymbol: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.SymbolReturn<O>;
+export declare const isUint8Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Uint8ArrayReturn<O>;
+export declare const isUint8ClampedArray: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Uint8ClampedArrayReturn<O>;
+export declare const isUint16Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Uint16ArrayReturn<O>;
+export declare const isUint32Array: <O extends {
+    allowUndefined?: boolean;
+}>(options_?: O & Static<typeof CheckOptions>) => returnTypes.Uint32ArrayReturn<O>;
 //# sourceMappingURL=check.d.ts.map

@@ -1,5 +1,5 @@
 export declare const to: (value_: string, type_: string) => string | number | bigint | boolean | symbol | object;
-export declare const toArray: (value_: string) => any[];
+export declare const toArray: (value_: string) => unknown[];
 export declare const toBigInt: (value_: string) => bigint;
 export declare const toBigInt64Array: (value_: string) => BigInt64Array<ArrayBuffer>;
 export declare const toBigUint64Array: (value_: string) => BigUint64Array<ArrayBuffer>;
@@ -7,7 +7,7 @@ export declare const toBoolean: (value_: string) => boolean;
 export declare const toDate: (value_: string) => Date;
 export declare const toFloat32Array: (value_: string) => Float32Array<ArrayBuffer>;
 export declare const toFloat64Array: (value_: string) => Float64Array<ArrayBuffer>;
-export declare const toFunction: (value_: string) => Function;
+export declare const toFunction: (value_: string) => (...args: never[]) => unknown;
 export declare const toInt8Array: (value_: string) => Int8Array<ArrayBuffer>;
 export declare const toInt16Array: (value_: string) => Int16Array<ArrayBuffer>;
 export declare const toInt32Array: (value_: string) => Int32Array<ArrayBuffer>;
@@ -15,7 +15,7 @@ export declare const toMap: (value_: string) => Map<string, any>;
 export declare const toNumber: (value_: string) => number;
 export declare const toObject: (value_: string) => object;
 export declare const toRegExp: (value_: string) => RegExp;
-export declare const toSet: (value_: string) => Set<any>;
+export declare const toSet: (value_: string) => Set<unknown>;
 export declare const toString: (value_: string) => string;
 export declare const toSymbol: (value_: string) => symbol;
 export declare const toUint8Array: (value_: string) => Uint8Array<ArrayBuffer>;
@@ -23,7 +23,7 @@ export declare const toUint8ClampedArray: (value_: string) => Uint8ClampedArray<
 export declare const toUint16Array: (value_: string) => Uint16Array<ArrayBuffer>;
 export declare const toUint32Array: (value_: string) => Uint32Array<ArrayBuffer>;
 export declare const fromLiteral: {
-    array: (value_: string) => any[];
+    array: (value_: string) => unknown[];
     bigint: (value_: string) => bigint;
     bigint64array: (value_: string) => BigInt64Array<ArrayBuffer>;
     biguint64array: (value_: string) => BigUint64Array<ArrayBuffer>;
@@ -31,7 +31,7 @@ export declare const fromLiteral: {
     date: (value_: string) => Date;
     float32array: (value_: string) => Float32Array<ArrayBuffer>;
     float64array: (value_: string) => Float64Array<ArrayBuffer>;
-    function: (value_: string) => Function;
+    function: (value_: string) => (...args: never[]) => unknown;
     int8array: (value_: string) => Int8Array<ArrayBuffer>;
     int16array: (value_: string) => Int16Array<ArrayBuffer>;
     int32array: (value_: string) => Int32Array<ArrayBuffer>;
@@ -39,7 +39,7 @@ export declare const fromLiteral: {
     number: (value_: string) => number;
     object: (value_: string) => object;
     regexp: (value_: string) => RegExp;
-    set: (value_: string) => Set<any>;
+    set: (value_: string) => Set<unknown>;
     string: (value_: string) => string;
     symbol: (value_: string) => symbol;
     uint8array: (value_: string) => Uint8Array<ArrayBuffer>;
